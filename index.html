@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ayan Sharma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --ink: #14181F;
+    --ink-soft: #4B5563;
+    --accent: #0E7C86;
+    --accent-soft: #0E7C8618;
+    --rule: #D8DBE0;
+    --chip-bg: #F0F3F3;
+    --card-bg: #FFFFFF;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14181F;
+      --ink: #F2F3F5;
+      --ink-soft: #9AA3AE;
+      --accent: #3FB3BD;
+      --accent-soft: #3FB3BD22;
+      --rule: #2A2F38;
+      --chip-bg: #1D222B;
+      --card-bg: #191D25;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181F;
+    --ink: #F2F3F5;
+    --ink-soft: #9AA3AE;
+    --accent: #3FB3BD;
+    --accent-soft: #3FB3BD22;
+    --rule: #2A2F38;
+    --chip-bg: #1D222B;
+    --card-bg: #191D25;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Nav ---------- */
+  header {
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+  }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+  }
+  .nav-name {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+  }
+  .nav-links a { color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 72px 0 56px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .hero h1 {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: clamp(34px, 6vw, 50px);
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0;
+  }
+  .hero-links {
+    margin-top: 28px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .hero-links a {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+  }
+  .hero-links a:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-fade {
+      animation: fadeUp 0.7s ease-out both;
+    }
+    .hero-fade:nth-child(2) { animation-delay: 0.08s; }
+    .hero-fade:nth-child(3) { animation-delay: 0.16s; }
+    .hero-fade:nth-child(4) { animation-delay: 0.24s; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* ---------- Section framing ---------- */
+  section { padding: 44px 0; border-top: 1px solid var(--rule); }
+  section h2 {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+
+  .about p { max-width: 62ch; margin: 0 0 16px; }
+  .about p:last-child { margin-bottom: 0; }
+
+  /* ---------- Entry (experience/projects) ---------- */
+  .entry { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .entry:last-child { border-bottom: none; padding-bottom: 0; }
+  .entry:first-child { padding-top: 0; }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .entry-title { font-weight: 600; font-size: 16.5px; }
+  .entry-sub { color: var(--ink-soft); font-size: 14.5px; font-style: italic; margin-bottom: 10px; }
+  .entry-date {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .entry ul {
+    margin: 10px 0 12px;
+    padding-left: 20px;
+  }
+  .entry li { margin-bottom: 6px; font-size: 15px; }
+  .entry li:last-child { margin-bottom: 0; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: var(--chip-bg);
+    border-radius: 5px;
+    padding: 3px 9px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-group { margin-bottom: 18px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    background: var(--chip-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 5px 11px;
+  }
+
+  /* ---------- Achievements strip ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+  }
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 560px) {
+    .stats { grid-template-columns: 1fr; }
+  }
+  .achv-list { list-style: none; margin: 0; padding: 0; }
+  .achv-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+  }
+  .achv-list li:last-child { border-bottom: none; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 36px 0 48px;
+  }
+  footer p { color: var(--ink-soft); font-size: 14.5px; margin: 0 0 10px; }
+  .footer-links {
+    display: flex;
+    gap: 18px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    flex-wrap: wrap;
+  }
+
+  .theme-toggle {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    color: var(--ink-soft);
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <span class="nav-name">Ayan Sharma</span>
+    <nav class="nav-links">
+      <a href="https://github.com/ayansharma090420072017-sudo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/ayan-sharma-970060361/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:Ayan.Sharma@warwick.ac.uk">Email</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <p class="hero-eyebrow hero-fade">Coventry, United Kingdom</p>
+    <h1 class="hero-fade">Second-year Computer Science student, building backend systems and ML pipelines.</h1>
+    <p class="hero-fade">I'm at the University of Warwick, and I split my time between production-style backend engineering, applied machine learning, and the occasional embedded systems project when I want to get closer to the hardware.</p>
+    <div class="hero-links hero-fade">
+      <a href="https://github.com/ayansharma090420072017-sudo" target="_blank" rel="noopener">github.com/ayansharma</a>
+      <a href="https://www.linkedin.com/in/ayan-sharma-970060361/" target="_blank" rel="noopener">linkedin.com/in/ayan-sharma</a>
+      <a href="mailto:Ayan.Sharma@warwick.ac.uk">Ayan.Sharma@warwick.ac.uk</a>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>About</h2>
+    <p>I enjoy taking a problem from a messy dataset or a vague spec through to something that actually runs in production. My most substantial project so far consolidated 4.3 million real transaction records into a forecasting pipeline that beat a time-series baseline by about 9% &mdash; the kind of work where the modelling is only half the job, and the data cleaning is the other half.</p>
+    <p>I'm equally comfortable a level lower: I've deployed containerised services on Linux, diagnosed production issues by reading through logs, and written interrupt-driven C for a microcontroller with no operating system to fall back on. Outside of coursework, I spend a lot of time on competitive programming, and I'm still a fairly serious Fortnite player when I'm not debugging something.</p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Hawkvision AI</span>
+        <span class="entry-date">Jun &ndash; Aug 2026</span>
+      </div>
+      <div class="entry-sub">Software Engineering Intern &middot; United Kingdom</div>
+      <ul>
+        <li>Deployed and configured an enterprise asset management platform (Snipe-IT) using Docker Compose on Linux, supporting 40 users and 118 tracked assets across the organisation.</li>
+        <li>Maintained containerised services with a MySQL backend, keeping inter-service communication and deployment reliable.</li>
+        <li>Diagnosed and resolved service connectivity and configuration issues by working through container and application logs, cutting downtime incidents.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">MedMitra AI</span>
+        <span class="entry-date">Jun 2026</span>
+      </div>
+      <div class="entry-sub">Software Engineering Intern &middot; Jaipur, India</div>
+      <ul>
+        <li>Worked with the project team building a hospital management tool with AI-based voice recognition and data capture; assisted with product testing and tool training.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Sales Forecasting ML Pipeline</span>
+        <span class="entry-date">2026</span>
+      </div>
+      <ul>
+        <li>Built an end-to-end pipeline predicting next-day and 7-day sales across 5,800+ outlets, consolidating ~4.3M transaction records from a multi-source database spanning POS and delivery aggregator platforms.</li>
+        <li>Engineered lag, rolling-average, and discount/availability features; set a SARIMA baseline, then developed a LightGBM model that reduced Mean Absolute Error by ~9%.</li>
+        <li>Designed data cleaning and aggregation logic to handle real inconsistencies across outlets with different operational histories and sales channels.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">SARIMA</span><span class="tag">PostgreSQL</span><span class="tag">scikit-learn</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Patient Management REST API</span>
+        <span class="entry-date">2026</span>
+      </div>
+      <ul>
+        <li>Designed a RESTful API for CRUD operations on patient records, following a layered Controller&ndash;Service&ndash;Repository architecture.</li>
+        <li>Implemented DTOs, centralised exception handling, and Bean Validation for clean, robust responses; documented every endpoint with Swagger/OpenAPI.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Data JPA</span><span class="tag">Swagger</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Embedded Ping Pong Game</span>
+        <span class="entry-date">2025</span>
+      </div>
+      <ul>
+        <li>Built a real-time ping pong game on an STM32 microcontroller, holding a stable FPS refresh rate on constrained hardware.</li>
+        <li>Optimised memory use and execution speed to reduce the RAM footprint, and debugged low-level timing and interrupt-driven behaviour directly with STM32CubeIDE and an ST-LINK debugger.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">STM32</span><span class="tag">C</span><span class="tag">STM32CubeIDE</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skill-group">
+      <div class="skill-label">Languages</div>
+      <div class="chip-row">
+        <span class="chip">Java</span><span class="chip">Python</span><span class="chip">C</span><span class="chip">C++</span><span class="chip">JavaScript</span><span class="chip">Haskell</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label">Data &amp; ML</div>
+      <div class="chip-row">
+        <span class="chip">LightGBM</span><span class="chip">scikit-learn</span><span class="chip">SARIMA</span><span class="chip">Feature Engineering</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label">Tools &amp; infrastructure</div>
+      <div class="chip-row">
+        <span class="chip">Spring Boot</span><span class="chip">Docker</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">STM32</span><span class="chip">LaTeX</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Achievements</h2>
+    <div class="stats">
+      <div>
+        <div class="stat-num">300+</div>
+        <div class="stat-label">Data structures &amp; algorithms problems solved on LeetCode</div>
+      </div>
+      <div>
+        <div class="stat-num">Top 0.2%</div>
+        <div class="stat-label">Mathematics, IIT entrance exam &mdash; ~1.5M candidates</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Mathematics for Machine Learning, Imperial College London</div>
+      </div>
+    </div>
+    <ul class="achv-list">
+      <li>Ranked in the top 1 percentile of ~1.5 million candidates in the Indian Institute of Technology entrance exam (2025).</li>
+      <li>Silver medalist, State Badminton Tournament (Under-15).</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Based in Coventry, United Kingdom &middot; open to software engineering and applied ML internships.</p>
+    <div class="footer-links">
+      <a href="https://github.com/ayansharma090420072017-sudo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/ayan-sharma-970060361/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:Ayan.Sharma@warwick.ac.uk">Ayan.Sharma@warwick.ac.uk</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    if (stored) root.setAttribute('data-theme', stored);
+
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var next;
+      if (!current) {
+        next = prefersDark ? 'light' : 'dark';
+      } else {
+        next = current === 'dark' ? 'light' : 'dark';
+      }
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
